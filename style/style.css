@@ -1,0 +1,37 @@
+.appTitle{
+    font-weight: bold;
+    margin: 0;
+    font-size: 37px;
+}
+
+.tasksContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.inputBox{
+    display: flex;
+    margin-top: 14px;
+}
+
+.taskInput{
+    border-radius: 3px;
+}
+
+/* 
+
+
+
+.todoItem{
+    cursor: pointer;
+}
+
+.todoList{
+    margin-top: 30px;
+}
+
+.instructions{
+    font-size: 11px;
+} */
