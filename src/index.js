@@ -8,6 +8,7 @@ import promise from 'redux-promise';
 import reducers from './reducers';
 import TasksIndex from './components/TasksIndex';
 import NewTask from './components/NewTask';
+import TaskView from './components/TaskView';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -15,8 +16,9 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div className="aligner">
-        <Switch>
+        <Switch>       
           <Route path="/tasks/new" component={ NewTask } />
+          <Route path="/tasks/:id" component={ TaskView } />
           <Route path="/" component={ TasksIndex } />       
         </Switch>
       </div>  

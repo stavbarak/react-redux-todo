@@ -13,7 +13,9 @@ class TasksIndex extends Component {
         return _.map(this.props.tasks, task => {
             return (
                 <li className="list-group-item" key={task.id}>
-                    {task.title}
+                    <Link to={`tasks/${task.id}`}>
+                        {task.title}
+                    </Link>
                 </li>   
             );           
         });
