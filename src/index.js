@@ -14,7 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <div>
+      <div className="aligner">
         <Switch>
           <Route path="/tasks/new" component={ NewTask } />
           <Route path="/" component={ TasksIndex } />       

@@ -1,10 +1,32 @@
-.appTitle{
+.aligner{
+    display: flex;
+    justify-content: center;
+    border: 2px solid #ddd;
+    border-radius: 17px;
+    margin-top: 90px;
+    box-shadow: 6px 6px 10px 0px rgba(224,224,224,1);
+
+}
+
+.appTitle, .newTaskTitle{
     font-weight: bold;
     margin: 0;
     font-size: 37px;
 }
 
-.tasksContainer{
+.newTaskTitle{
+    margin-bottom: 40px;
+}
+
+.tasksContainer, .newTaskForm{
+     padding: 89px;
+}
+
+label{
+    font-weight: 700;
+}
+
+.headerContainer{
     display: flex;
     justify-content: space-between;
     margin-top: 14px;
@@ -20,18 +42,6 @@
     border-radius: 3px;
 }
 
-/* 
-
-
-
-.todoItem{
-    cursor: pointer;
+form a {
+    margin-left: 10px;
 }
-
-.todoList{
-    margin-top: 30px;
-}
-
-.instructions{
-    font-size: 11px;
-} */
