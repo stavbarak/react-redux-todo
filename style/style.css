@@ -26,12 +26,6 @@
     margin-bottom: 20px;
 }
 
-/* .taskViewCont {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-} */
-
 .taskViewCat {
     color: #818a91;
     border-bottom: 1px solid #818a91;

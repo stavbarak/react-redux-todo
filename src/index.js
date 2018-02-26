@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 
@@ -10,10 +10,10 @@ import TasksIndex from './components/TasksIndex';
 import NewTask from './components/NewTask';
 import TaskView from './components/TaskView';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = createStore(reducers, applyMiddleware(promise));
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <BrowserRouter>
       <div className="aligner">
         <Switch>       

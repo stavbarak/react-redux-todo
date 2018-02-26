@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap';
@@ -5,9 +6,41 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createTask } from '../actions';
 
+const FIELDS = {
+    title: {
+        type: 'input',
+        label: 'Title',
+        name : 'title'
+    },   
+    categories: {
+        type: 'input',
+        label: 'Categories',
+        name : 'categories'
+    },
+    content: {
+        type: 'textarea',
+        label: 'Content',
+        name : 'content'
+    }
+
+}
+
 class NewTask extends Component {
 
-    renderField(field){
+    renderField = (fieldConfig) => {
+
+        return (
+            <Field 
+                key={fieldConfig.name}
+                label={fieldConfig.label}
+                className="inputBox"
+                name = {fieldConfig.name}
+                component = {this.fillField}
+            />
+        )    
+    }
+
+    fillField = (field) => {
         const {meta: {touched, error} } = field;
         const className =`${touched && error ? 'has-danger' : ''}`
         return (
@@ -22,7 +55,7 @@ class NewTask extends Component {
                     {touched ? error : ''}
                 </div>
             </FormGroup>
-        )    
+        )
     }
 
     onSubmit = (values) => {       
@@ -37,24 +70,8 @@ class NewTask extends Component {
         return (           
                 <form onSubmit={handleSubmit(this.onSubmit)} className="newTaskForm col-xs-6">
                     <div><h3 className="newTaskTitle">Add New Task</h3></div>
-                    <Field 
-                        label="Title"
-                        className="inputBox"
-                        name = 'title'
-                        component = {this.renderField}
-                    />
-                    <Field 
-                        label="Categories"
-                        className="inputBox"
-                        name = 'categories'
-                        component = {this.renderField}
-                    />
-                    <Field 
-                        label="Content"
-                        className="inputBox"
-                        name = 'content'
-                        component = {this.renderField}
-                    />
+                    {_.map(FIELDS, this.renderField)}
+
                     <button type="submit" className="btn btn-primary">Submit</button>
                     <Link to="/" className="btn btn-danger">Cancel</Link>
                 </form>           
@@ -64,14 +81,17 @@ class NewTask extends Component {
 
 const validate = (values) => {
     const errors = {};
-    if (!values.title) errors.title = "Please provide a title for the task";
-    if (!values.categories) errors.categories = "Please enter at least one category";
-    if (!values.content) errors.content = "Please enter some content";
+    _.each(FIELDS, (type, field) => {
+        if(!values[field]){
+            errors[field] = `Please enter the ${field}`;
+        }
+    });
     return errors;
 }
 
 export default reduxForm({
     validate,
+    Fields: _.keys(FIELDS),
     form: 'newTaskForm'
 })(
     connect(null, { createTask })(NewTask)
